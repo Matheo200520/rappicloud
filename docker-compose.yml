@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  usuarios:
+    build: ./usuarios
+    container_name: usuarios_service
+    ports:
+      - "3001:3001"
+
+  restaurantes:
+    build: ./restaurantes
+    container_name: restaurantes_service
+    ports:
+      - "3002:3002"
+
+  pedidos:
+    build: ./pedidos
+    container_name: pedidos_service
+    ports:
+      - "3003:3003"
+
+  pagos:
+    build: ./pagos
+    container_name: pagos_service
+    ports:
+      - "3004:3004"
+
+  repartidores:
+    build: ./repartidores
+    container_name: repartidores_service
+    ports:
+      - "3005:3005"
+
+  notificaciones:
+    build: ./notificaciones
+    container_name: notificaciones_service
+    ports:
+      - "3006:3006"
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: gateway_service
+    ports:
+      - "8000:8000"
+    depends_on:
+      - usuarios
+      - restaurantes
+      - pedidos
+      - pagos
+      - repartidores
+      - notificaciones
